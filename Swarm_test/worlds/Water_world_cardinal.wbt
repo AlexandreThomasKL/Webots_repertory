@@ -1,0 +1,243 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/CarpetFibers.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Plastic.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.4579693275084752 0.2228282687130828 0.860587972100334 2.201780872329783
+  position 0.790335378636966 -4.594590624840775 5.02837361430562
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 15 15
+  floorAppearance CarpetFibers {
+    colorOverride 0.5 0.5 0.5
+  }
+  wallThickness 0.1
+  wallHeight 0.5
+}
+DEF WATER Fluid {
+  translation -0.03 0 0.2
+  children [
+    DEF water Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.7 0.8
+        transparency 0.9
+        metalness 0
+      }
+      geometry Box {
+        size 15 15 0.4
+      }
+      castShadows FALSE
+      isPickable FALSE
+    }
+  ]
+  name "water"
+  boundingObject USE water
+}
+Robot {
+  translation -5.41864e-16 -3.74533 3.48537
+  rotation 0.9998243406180094 -0.00510330449767123 -0.018034527744487168 4.6698735186761166e-14
+  children [
+    DEF body Transform {
+      children [
+        DEF SIDE Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.6 0.1 0.04
+          }
+        }
+        DEF MAIN Shape {
+          appearance PBRAppearance {
+            baseColor 0.5 0.5 0.5
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.5 0.5 0.05
+          }
+        }
+        DEF FRONT Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.6 0.04
+          }
+        }
+      ]
+    }
+    DEF PROPELLER_RIGHT Propeller {
+      centerOfThrust 0.35 0 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_right"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    DEF PROPELLER_LEFT Propeller {
+      shaftAxis -1 0 0
+      centerOfThrust -0.35 0 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_left"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    DEF PROPELLER_FRONT Propeller {
+      shaftAxis 0 -1 0
+      centerOfThrust 0 0.35 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_front"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    DEF PROPELLER_BACK Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust 0 -0.35 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_back"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    GPS {
+    }
+    Gyro {
+    }
+    DistanceSensor {
+      translation 2.16471e-07 0 -0.02
+      rotation 0 -1 0 -1.5707953071795862
+      name "area_detector"
+      lookupTable [
+        0 0 0
+        0.4 1000 0
+      ]
+    }
+    Compass {
+    }
+    Group {
+      children [
+        DistanceSensor {
+          translation 0.25 0.25 0
+          rotation 0 0 1 0.785403
+          name "sensor_NE"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+        }
+        DistanceSensor {
+          translation 0.25 -0.25 0
+          rotation 0 0 1 -0.785395307179586
+          name "sensor_SE"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+        }
+        DistanceSensor {
+          translation -0.25 -0.25 0
+          rotation 0 0 1 -2.3561953071795863
+          name "sensor_SO"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+        }
+        DistanceSensor {
+          translation -0.25 0.25 0
+          rotation 0 0 1 2.35619
+          name "sensor_NO"
+          lookupTable [
+            0 0 0
+            0.2 1000 0
+          ]
+        }
+      ]
+    }
+    Receiver {
+      type "serial"
+      channel 5
+    }
+    Emitter {
+      type "serial"
+      channel 5
+    }
+  ]
+  name "ship_swarm"
+  contactMaterial "db"
+  immersionProperties [
+    ImmersionProperties {
+      fluidName "water"
+    }
+  ]
+  boundingObject USE body
+  physics Physics {
+    density 800
+    damping Damping {
+      linear 0.9
+    }
+  }
+  controller "ship_swarm_cardinal"
+}
+DEF area Solid {
+  translation 0 2.51 0.1
+  children [
+    DEF area_shape Shape {
+      appearance PBRAppearance {
+      }
+      geometry Cylinder {
+        height 0.2
+      }
+      castShadows FALSE
+    }
+  ]
+  boundingObject USE area_shape
+}
+Solid {
+  translation -3.59427 0 1.31387
+  rotation 0 1 0 0.785398
+  children [
+    DEF ball_shape Shape {
+      appearance Plastic {
+      }
+      geometry Sphere {
+        radius 0.4
+        subdivision 2
+      }
+    }
+  ]
+  name "ball"
+  boundingObject USE ball_shape
+  physics Physics {
+    density 500
+  }
+}

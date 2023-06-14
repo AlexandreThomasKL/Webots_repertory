@@ -1,0 +1,924 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/CarpetFibers.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Plastic.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.5843740064175552 0.5607524301862946 0.5865694610731623 2.1162730182054332
+  position -1.461104349305834 0.14127567181589024 30.235284880243867
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 20 20
+  floorAppearance CarpetFibers {
+    colorOverride 0.5 0.5 0.5
+  }
+  wallThickness 0.1
+  wallHeight 1
+}
+DEF WATER Fluid {
+  translation -0.03 0 0.2
+  children [
+    DEF water Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.7 0.8
+        transparency 0.9
+        metalness 0
+      }
+      geometry Box {
+        size 20 20 1
+      }
+      castShadows FALSE
+      isPickable FALSE
+    }
+  ]
+  name "water"
+  boundingObject USE water
+}
+Robot {
+  translation -7.17599 1.45419 0.6724049129998633
+  rotation -0.00033104899342921353 0.0003482626548051914 -0.9999998845598369 1.42165014588554
+  children [
+    DEF body Transform {
+      children [
+        DEF SIDE Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.6 0.1 0.04
+          }
+        }
+        DEF MAIN Shape {
+          appearance PBRAppearance {
+            baseColor 0.5 0.5 0.5
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.1
+            radius 0.25
+          }
+        }
+      ]
+    }
+    DEF PROPELLER_RIGHT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust 0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_right"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    DEF PROPELLER_LEFT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust -0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_left"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    GPS {
+    }
+    Gyro {
+    }
+    DistanceSensor {
+      translation 2.16471e-07 0 -0.02
+      rotation 0 -1 0 -1.5707953071795862
+      name "area_detector"
+      lookupTable [
+        0 0 0
+        0.7 1000 0
+      ]
+    }
+    Compass {
+    }
+    DistanceSensor {
+      translation 0.143475 0.20043 0.02
+      rotation 0 0 1 1.4399003061004252
+      name "left_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    DistanceSensor {
+      translation -0.143475 0.20043 0.02
+      rotation 0 0 1 1.7016996938995748
+      name "right_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    Receiver {
+      type "serial"
+      channel 5
+    }
+    Emitter {
+      type "serial"
+      channel 5
+    }
+    Camera {
+      translation -5.0981e-08 0 -0.05
+      rotation -0.7071062811861719 -3.3905013482585576e-09 0.7071072811865696 3.14159
+      name "cam_underwater"
+    }
+  ]
+  name "ship_swarm"
+  contactMaterial "db"
+  immersionProperties [
+    ImmersionProperties {
+      fluidName "water"
+    }
+  ]
+  boundingObject Group {
+    children [
+      USE SIDE
+      USE MAIN
+    ]
+  }
+  physics Physics {
+    density 800
+    damping Damping {
+      linear 0.9
+    }
+  }
+  controller "ship_swarm_multiples_obj"
+  linearVelocity 0 0 0.0002118515271736809
+  angularVelocity 0.0011041385663663932 -0.0043741334385752366 -2.606079870764063e-07
+}
+Robot {
+  translation 7.57475 2.39904 0.6719287192422768
+  rotation -0.0002603880592330074 -0.0004470462362636051 0.9999998661738517 1.6851700320291703
+  children [
+    DEF body Transform {
+      children [
+        DEF SIDE Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.6 0.1 0.04
+          }
+        }
+        DEF MAIN Shape {
+          appearance PBRAppearance {
+            baseColor 0.5 0.5 0.5
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.1
+            radius 0.25
+          }
+        }
+      ]
+    }
+    DEF PROPELLER_RIGHT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust 0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_right"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    DEF PROPELLER_LEFT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust -0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_left"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    GPS {
+    }
+    Gyro {
+    }
+    DistanceSensor {
+      translation 2.16471e-07 0 -0.02
+      rotation 0 -1 0 -1.5707953071795862
+      name "area_detector"
+      lookupTable [
+        0 0 0
+        0.7 1000 0
+      ]
+    }
+    Compass {
+    }
+    DistanceSensor {
+      translation 0.143475 0.20043 0.02
+      rotation 0 0 1 1.4399003061004252
+      name "left_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    DistanceSensor {
+      translation -0.143475 0.20043 0.02
+      rotation 0 0 1 1.7016996938995748
+      name "right_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    Receiver {
+      type "serial"
+      channel 5
+    }
+    Emitter {
+      type "serial"
+      channel 5
+    }
+    Camera {
+      translation -5.0981e-08 0 -0.05
+      rotation -0.7071062811861719 -3.3905013482585576e-09 0.7071072811865696 3.14159
+      name "cam_underwater"
+    }
+  ]
+  name "ship_swarm(1)"
+  contactMaterial "db"
+  immersionProperties [
+    ImmersionProperties {
+      fluidName "water"
+    }
+  ]
+  boundingObject Group {
+    children [
+      USE SIDE
+      USE MAIN
+    ]
+  }
+  physics Physics {
+    density 800
+    damping Damping {
+      linear 0.9
+    }
+  }
+  controller "ship_swarm_multiples_obj"
+  controllerArgs [
+    ""
+  ]
+  linearVelocity 0 0 0.002753498879043881
+  angularVelocity -7.829500776253902e-05 0.0004737112297491936 3.148413862281049e-08
+}
+Robot {
+  translation -2.58075 -4.96991 0.6832688173210779
+  rotation -0.00037177646656419867 -0.00023941214558290287 -0.9999999022320368 1.456417508819008
+  children [
+    DEF body Transform {
+      children [
+        DEF SIDE Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.6 0.1 0.04
+          }
+        }
+        DEF MAIN Shape {
+          appearance PBRAppearance {
+            baseColor 0.5 0.5 0.5
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.1
+            radius 0.25
+          }
+        }
+      ]
+    }
+    DEF PROPELLER_RIGHT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust 0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_right"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    DEF PROPELLER_LEFT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust -0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_left"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    GPS {
+    }
+    Gyro {
+    }
+    DistanceSensor {
+      translation 2.16471e-07 0 -0.02
+      rotation 0 -1 0 -1.5707953071795862
+      name "area_detector"
+      lookupTable [
+        0 0 0
+        0.7 1000 0
+      ]
+    }
+    Compass {
+    }
+    DistanceSensor {
+      translation 0.143475 0.20043 0.02
+      rotation 0 0 1 1.4399003061004252
+      name "left_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    DistanceSensor {
+      translation -0.143475 0.20043 0.02
+      rotation 0 0 1 1.7016996938995748
+      name "right_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    Receiver {
+      type "serial"
+      channel 5
+    }
+    Emitter {
+      type "serial"
+      channel 5
+    }
+    Camera {
+      translation -5.0981e-08 0 -0.05
+      rotation -0.7071062811861719 -3.3905013482585576e-09 0.7071072811865696 3.14159
+      name "cam_underwater"
+    }
+  ]
+  name "ship_swarm(2)"
+  contactMaterial "db"
+  immersionProperties [
+    ImmersionProperties {
+      fluidName "water"
+    }
+  ]
+  boundingObject Group {
+    children [
+      USE SIDE
+      USE MAIN
+    ]
+  }
+  physics Physics {
+    density 800
+    damping Damping {
+      linear 0.9
+    }
+  }
+  controller "ship_swarm_multiples_obj"
+  controllerArgs [
+    ""
+  ]
+  linearVelocity 0 0 -0.02758766943885213
+  angularVelocity 0.0008123495351474808 0.0007644652814635405 -2.608007804069939e-07
+}
+Robot {
+  translation 0.469818 -4.63098 0.6575979494880827
+  rotation 0.004522731161968366 7.373929109783733e-05 0.999989769680347 0.1143802499324586
+  children [
+    DEF body Transform {
+      children [
+        DEF SIDE Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.6 0.1 0.04
+          }
+        }
+        DEF MAIN Shape {
+          appearance PBRAppearance {
+            baseColor 0.5 0.5 0.5
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.1
+            radius 0.25
+          }
+        }
+      ]
+    }
+    DEF PROPELLER_RIGHT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust 0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_right"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    DEF PROPELLER_LEFT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust -0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_left"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    GPS {
+    }
+    Gyro {
+    }
+    DistanceSensor {
+      translation 2.16471e-07 0 -0.02
+      rotation 0 -1 0 -1.5707953071795862
+      name "area_detector"
+      lookupTable [
+        0 0 0
+        0.7 1000 0
+      ]
+    }
+    Compass {
+    }
+    DistanceSensor {
+      translation 0.143475 0.20043 0.02
+      rotation 0 0 1 1.4399003061004252
+      name "left_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    DistanceSensor {
+      translation -0.143475 0.20043 0.02
+      rotation 0 0 1 1.7016996938995748
+      name "right_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    Receiver {
+      type "serial"
+      channel 5
+    }
+    Emitter {
+      type "serial"
+      channel 5
+    }
+    Camera {
+      translation -5.0981e-08 0 -0.05
+      rotation -0.7071062811861719 -3.3905013482585576e-09 0.7071072811865696 3.14159
+      name "cam_underwater"
+    }
+  ]
+  name "ship_swarm(5)"
+  contactMaterial "db"
+  immersionProperties [
+    ImmersionProperties {
+      fluidName "water"
+    }
+  ]
+  boundingObject Group {
+    children [
+      USE SIDE
+      USE MAIN
+    ]
+  }
+  physics Physics {
+    density 800
+    damping Damping {
+      linear 0.9
+    }
+  }
+  controller "ship_swarm_multiples_obj"
+  controllerArgs [
+    ""
+  ]
+  linearVelocity 0 0 -0.19320195813436863
+  angularVelocity 0.0009742306844162576 0.0009436602086875661 1.962780671081123e-07
+}
+Robot {
+  translation -0.0137659 7.20097 0.6585995669597826
+  rotation -5.270338930341331e-05 0.00022455494452537403 0.9999999733987144 -2.7654152917123076
+  children [
+    DEF body Transform {
+      children [
+        DEF SIDE Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.6 0.1 0.04
+          }
+        }
+        DEF MAIN Shape {
+          appearance PBRAppearance {
+            baseColor 0.5 0.5 0.5
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.1
+            radius 0.25
+          }
+        }
+      ]
+    }
+    DEF PROPELLER_RIGHT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust 0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_right"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    DEF PROPELLER_LEFT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust -0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_left"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    GPS {
+    }
+    Gyro {
+    }
+    DistanceSensor {
+      translation 2.16471e-07 0 -0.02
+      rotation 0 -1 0 -1.5707953071795862
+      name "area_detector"
+      lookupTable [
+        0 0 0
+        0.7 1000 0
+      ]
+    }
+    Compass {
+    }
+    DistanceSensor {
+      translation 0.143475 0.20043 0.02
+      rotation 0 0 1 1.4399003061004252
+      name "left_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    DistanceSensor {
+      translation -0.143475 0.20043 0.02
+      rotation 0 0 1 1.7016996938995748
+      name "right_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    Receiver {
+      type "serial"
+      channel 5
+    }
+    Emitter {
+      type "serial"
+      channel 5
+    }
+    Camera {
+      translation -5.0981e-08 0 -0.05
+      rotation -0.7071062811861719 -3.3905013482585576e-09 0.7071072811865696 3.14159
+      name "cam_underwater"
+    }
+  ]
+  name "ship_swarm(3)"
+  contactMaterial "db"
+  immersionProperties [
+    ImmersionProperties {
+      fluidName "water"
+    }
+  ]
+  boundingObject Group {
+    children [
+      USE SIDE
+      USE MAIN
+    ]
+  }
+  physics Physics {
+    density 800
+    damping Damping {
+      linear 0.9
+    }
+  }
+  controller "ship_swarm_multiples_obj"
+  controllerArgs [
+    ""
+  ]
+  linearVelocity 0 0 -0.2075009657370623
+  angularVelocity -0.001202639581650163 0.00046601396968028646 -1.8068480966231566e-07
+}
+Robot {
+  translation 5.04928 -5.36432 0.6979162342236743
+  rotation 0.00015622956254477245 -4.793351854071097e-05 0.9999999866473507 1.9469699285157667
+  children [
+    DEF body Transform {
+      children [
+        DEF SIDE Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.6 0.1 0.04
+          }
+        }
+        DEF MAIN Shape {
+          appearance PBRAppearance {
+            baseColor 0.5 0.5 0.5
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.1
+            radius 0.25
+          }
+        }
+      ]
+    }
+    DEF PROPELLER_RIGHT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust 0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_right"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    DEF PROPELLER_LEFT Propeller {
+      shaftAxis 0 1 0
+      centerOfThrust -0.3 -0.1 0
+      thrustConstants 0.6 0
+      torqueConstants 0 0
+      fastHelixThreshold 72
+      device RotationalMotor {
+        name "propeller_motor_left"
+        acceleration 10
+        maxTorque 15
+      }
+    }
+    GPS {
+    }
+    Gyro {
+    }
+    DistanceSensor {
+      translation 2.16471e-07 0 -0.02
+      rotation 0 -1 0 -1.5707953071795862
+      name "area_detector"
+      lookupTable [
+        0 0 0
+        0.7 1000 0
+      ]
+    }
+    Compass {
+    }
+    DistanceSensor {
+      translation 0.143475 0.20043 0.02
+      rotation 0 0 1 1.4399003061004252
+      name "left_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    DistanceSensor {
+      translation -0.143475 0.20043 0.02
+      rotation 0 0 1 1.7016996938995748
+      name "right_sensor"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+    }
+    Receiver {
+      type "serial"
+      channel 5
+    }
+    Emitter {
+      type "serial"
+      channel 5
+    }
+    Camera {
+      translation -5.0981e-08 0 -0.05
+      rotation -0.7071062811861719 -3.3905013482585576e-09 0.7071072811865696 3.14159
+      name "cam_underwater"
+    }
+  ]
+  name "ship_swarm(4)"
+  contactMaterial "db"
+  immersionProperties [
+    ImmersionProperties {
+      fluidName "water"
+    }
+  ]
+  boundingObject Group {
+    children [
+      USE SIDE
+      USE MAIN
+    ]
+  }
+  physics Physics {
+    density 800
+    damping Damping {
+      linear 0.9
+    }
+  }
+  controller "ship_swarm_multiples_obj"
+  controllerArgs [
+    ""
+  ]
+  linearVelocity 0 0 0.24022235330078862
+  angularVelocity -0.00036038272943590666 0.0014441043794155412 1.927211968234459e-07
+}
+DEF main_area Solid {
+  translation -3.95 1.89 0.1
+  children [
+    Group {
+      children [
+        DEF outer_area Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 2.5
+          }
+          castShadows FALSE
+        }
+        DEF inner_area Shape {
+          appearance PBRAppearance {
+            baseColor 0.6 0.6 0.6
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.5
+            radius 1.4
+          }
+          castShadows FALSE
+        }
+        DEF main_area Shape {
+          appearance PBRAppearance {
+            baseColor 0.3 0.3 0.3
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.8
+            radius 0.6
+          }
+          castShadows FALSE
+        }
+      ]
+    }
+  ]
+  boundingObject Group {
+    children [
+      USE main_area
+      USE inner_area
+      USE outer_area
+    ]
+  }
+}
+DEF main_area Solid {
+  translation 3.91 1.83 0.1
+  children [
+    Group {
+      children [
+        DEF outer_area Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 2.5
+          }
+          castShadows FALSE
+        }
+        DEF inner_area Shape {
+          appearance PBRAppearance {
+            baseColor 0.6 0.6 0.6
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.5
+            radius 1.4
+          }
+          castShadows FALSE
+        }
+        DEF main_area Shape {
+          appearance PBRAppearance {
+            baseColor 0.3 0.3 0.3
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.8
+            radius 0.6
+          }
+          castShadows FALSE
+        }
+      ]
+    }
+  ]
+  name "solid(1)"
+  boundingObject Group {
+    children [
+      USE main_area
+      USE inner_area
+      USE outer_area
+    ]
+  }
+}
+Solid {
+  translation -1.79138 7.49 0.7000003816991676
+  rotation 0 1 0 0.7853979999999999
+  children [
+    DEF ball_shape Shape {
+      appearance Plastic {
+      }
+      geometry Sphere {
+        radius 0.4
+        subdivision 2
+      }
+    }
+  ]
+  name "ball"
+  immersionProperties [
+    ImmersionProperties {
+      fluidName "water"
+    }
+  ]
+  boundingObject USE ball_shape
+  physics Physics {
+    density 500
+    damping Damping {
+      linear 0.4
+      angular 0.4
+    }
+  }
+  linearVelocity 0 0 -7.370103543712941e-07
+}

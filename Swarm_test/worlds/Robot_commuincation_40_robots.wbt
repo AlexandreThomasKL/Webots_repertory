@@ -1,0 +1,5841 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.5548623794890105 0.46611688246576216 -0.6891028890580797 2.092086789307569
+  position -0.4929468261836032 0.4908227898960876 3.6857650705627636
+}
+TexturedBackground {
+  luminosity 0.8
+  skybox FALSE
+}
+TexturedBackgroundLight {
+  luminosity -1
+  castShadows FALSE
+}
+RectangleArena {
+  floorSize 2 2
+}
+Solid {
+  translation 0.020109097063820282 -1.3284632288818234 0.13116479999999997
+  rotation -1.8164409927590826e-14 -4.0300231545364893e-14 1 0.00016233594980418357
+  children [
+    DEF box Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.3 0.3
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.4 0.4 0.3
+      }
+    }
+  ]
+  boundingObject USE box
+  physics Physics {
+  }
+}
+Robot {
+  translation 0.1 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.1 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(5)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.3 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(6)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.5 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(7)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.7 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(8)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.5 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(12)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.3 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(13)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.1 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(14)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.1 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(15)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.3 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(16)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.5 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(17)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.7 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(18)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.9 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(19)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.7 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(11)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.9 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(9)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.9 0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(10)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.9 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(30)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.7 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(31)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.5 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(32)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.3 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(33)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.1 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(34)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.1 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(35)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.5 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(36)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.3 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(37)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.7 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(38)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.9 0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(39)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.3 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(1)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.5 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(2)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.7 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(3)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.9 0 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(4)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.9 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(20)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.9 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(40)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.7 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(41)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.5 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(42)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.3 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(43)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.1 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(44)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.1 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(45)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.3 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(46)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.5 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(47)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.7 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(48)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.9 -0.6 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(49)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.7 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(21)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.5 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(22)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.29 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(23)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation 0.1 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(24)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.11 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(25)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.3 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(26)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.5 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(27)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.7 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(28)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}
+Robot {
+  translation -0.9 -0.3 0.001
+  rotation 0 1 0 0
+  children [
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82663.67792329757
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0.33093144083197323 0.8838229712884743 0.330668016130509 1.6931917519019106
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65505.324827529366
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.6078894083817813 -0.511399059969879 -0.6074055223976582 4.087688866611005
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation 0 -0.045 0.07
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "front_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      numberOfRays 2
+      aperture 1.571
+    }
+    LED {
+      translation 0 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.02
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+  ]
+  name "robot(29)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "Avoidance_path"
+}

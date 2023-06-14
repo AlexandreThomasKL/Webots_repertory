@@ -1,0 +1,4 @@
+Creation of the file of 'ship_swarm(2)'
+0.032;INITIALISATION;False;-2.58;-4.97;1.46;0.04
+2.304;SEARCHING;False;-2.51;-4.96;1.46;0.24
+4.16;RECEVING;False;-1.78;-4.88;1.46;0.4
