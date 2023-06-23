@@ -1,0 +1,2 @@
+Creation of the file of 'ship_swarm(1)'
+ship_swarm(1);5.276;11.44;13.51;

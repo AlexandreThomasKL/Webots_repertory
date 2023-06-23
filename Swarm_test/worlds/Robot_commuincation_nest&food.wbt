@@ -1,0 +1,1723 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Asphalt.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.0049999166686457795 -0.0049999166686457795 0.9999750005208197 4.71236398059302
+  position -0.33749230618863524 1.6225353369100444 0.25579202565526693
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+  luminosity 0.5
+  castShadows FALSE
+}
+Solid {
+  translation 0 1.4 0.001
+  rotation 1 0 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.7 0.001
+        metalness 0
+      }
+      geometry Plane {
+        size 3 0.2
+      }
+      castShadows FALSE
+    }
+  ]
+}
+Solid {
+  translation 0 -1.4 0.001
+  rotation 1 0 0 1.01503e-06
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.15 0.8 0.8
+        metalness 0
+      }
+      geometry Plane {
+        size 3 0.2
+      }
+      castShadows FALSE
+    }
+  ]
+  name "solid(1)"
+}
+RectangleArena {
+  rotation 1 0 0 0
+  floorSize 3 3
+  floorAppearance Asphalt {
+    colorOverride 0 0 0
+  }
+}
+Robot {
+  translation 0.3000016911793693 -1.3244297035170376 -0.00022427296584998785
+  rotation 0.999997634544891 -0.0018368471235244385 0.0011648593337199595 0
+  children [
+    Compass {
+      translation 0 0 0.08
+    }
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82815.6104206447
+        axis -1 0 0
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0450017 3.952081097243909e-06 0.025002650925518833
+        rotation -0.698364743375758 0.1567605878688404 0.6983643771704906 3.4525823928446844
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65648.8203466053
+        axis -1 0 0
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500163819015932 2.6587980051460146e-06 0.02499783989189846
+        rotation 0.46300709783250166 0.7558091353166639 0.4630086158254521 1.8471782826614067
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation -0.03 0.03 0.07
+      rotation 0 0 1 1.7608996938995747
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "left_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0.03 0.03 0.07
+      rotation 0 0 1 1.2791003061004251
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "right_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0 0.046 0.01
+      rotation 0.5773519358512958 0.5773469358518515 -0.5773519358512958 2.0944
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "area_detector"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.04 1000 0
+      ]
+      type "infra-red"
+      aperture 1.571
+    }
+    LED {
+      translation 0 -0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+    LED {
+      translation 0 0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_food"
+      color [
+        0 1 0
+      ]
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "GPS_robot_nest_food"
+}
+Robot {
+  translation -0.5599994986796464 -1.3424916923735086 -0.00018742247961513886
+  rotation 0.9999968268613066 -0.0018405322095130154 0.0017200896789748756 0.031862146837009504
+  children [
+    Compass {
+      translation 0 0 0.08
+    }
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82815.61042063615
+        axis -1 0 0
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0450017 3.952081074559541e-06 0.02500265092555265
+        rotation -0.6983647437193292 0.1567605848076325 0.698364377514063 3.4525823868691083
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65648.82034659569
+        axis -1 0 0
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500163819015932 2.658798025894101e-06 0.024997839891923997
+        rotation 0.4630071006839133 0.7558091318231154 0.46300861867687204 1.8471782871082485
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation -0.03 0.03 0.07
+      rotation 0 0 1 1.7608996938995747
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "left_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0.03 0.03 0.07
+      rotation 0 0 1 1.2791003061004251
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "right_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0 0.046 0.01
+      rotation 0.5773519358512958 0.5773469358518515 -0.5773519358512958 2.0944
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "area_detector"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.04 1000 0
+      ]
+      type "infra-red"
+      aperture 1.571
+    }
+    LED {
+      translation 0 -0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+    LED {
+      translation 0 0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_food"
+      color [
+        0 1 0
+      ]
+    }
+  ]
+  name "robot(1)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "GPS_robot_nest_food"
+}
+Robot {
+  translation -1.2400004261367847 -1.3673626018783074 -0.000251259574765246
+  rotation 0.9999975854478423 -0.0016675700061906525 0.0014311913776580674 0.0352367556479058
+  children [
+    Compass {
+      translation 0 0 0.08
+    }
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82815.61042054112
+        axis -1 0 0
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0450017 3.9520808226588315e-06 0.025002650925928193
+        rotation -0.6983647475348383 0.15676055081156473 0.6983643813295864 3.452582320507692
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65648.82034649966
+        axis -1 0 0
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500163819015932 2.6587982333251053e-06 0.024997839892179317
+        rotation 0.46300712919370896 0.7558090968929233 0.4630086471867491 1.8471783315699377
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation -0.03 0.03 0.07
+      rotation 0 0 1 1.7608996938995747
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "left_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0.03 0.03 0.07
+      rotation 0 0 1 1.2791003061004251
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "right_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0 0.046 0.01
+      rotation 0.5773519358512958 0.5773469358518515 -0.5773519358512958 2.0944
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "area_detector"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.04 1000 0
+      ]
+      type "infra-red"
+      aperture 1.571
+    }
+    LED {
+      translation 0 -0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+    LED {
+      translation 0 0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_food"
+      color [
+        0 1 0
+      ]
+    }
+  ]
+  name "robot(2)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "GPS_robot_nest_food"
+}
+Robot {
+  translation -0.285712835508701 -1.3432329131930143 -0.0018501752615943806
+  rotation -0.007755745048489376 -0.07132743853383784 -0.9974228014893907 0.17982528930248304
+  children [
+    Compass {
+      translation 0 0 0.08
+    }
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82815.61008435926
+        axis -1 0 0
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0450017 3.951189406120346e-06 0.025002652254396275
+        rotation -0.6983782408539349 0.156640278449411 0.6983778746989728 3.4523475406744923
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65646.61012202606
+        axis -1 0 0
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500163819015932 1.467483459658256e-07 0.025003422533968492
+        rotation 0.7058573370739396 -0.059395531301905675 0.7058594694131766 3.26024374938439
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation -0.03 0.03 0.07
+      rotation 0 0 1 1.7608996938995747
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "left_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0.03 0.03 0.07
+      rotation 0 0 1 1.2791003061004251
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "right_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0 0.046 0.01
+      rotation 0.5773519358512958 0.5773469358518515 -0.5773519358512958 2.0944
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "area_detector"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.04 1000 0
+      ]
+      type "infra-red"
+      aperture 1.571
+    }
+    LED {
+      translation 0 -0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+    LED {
+      translation 0 0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_food"
+      color [
+        0 1 0
+      ]
+    }
+  ]
+  name "robot(3)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "GPS_robot_nest_food"
+}
+Robot {
+  translation -0.899999 -1.38186 -0.00796329
+  rotation 0.9999994558148683 -0.0009447412131004707 0.0004425313635561036 0.05924992010975348
+  children [
+    Compass {
+      translation 0 0 0.08
+    }
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82815.61042050323
+        axis -1 0 0
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0450017 3.952080722207682e-06 0.025002650926077948
+        rotation -0.6983647490563677 0.15676053725478659 0.6983643828511212 3.452582294044426
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65648.82034646424
+        axis -1 0 0
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500163819015932 2.6587983098341652e-06 0.02499783989227349
+        rotation 0.4630071397093692 0.7558090840091393 0.463008657702439 1.8471783479693538
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation -0.03 0.03 0.07
+      rotation 0 0 1 1.7608996938995747
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "left_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0.03 0.03 0.07
+      rotation 0 0 1 1.2791003061004251
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "right_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0 0.046 0.01
+      rotation 0.5773519358512958 0.5773469358518515 -0.5773519358512958 2.0944
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "area_detector"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.04 1000 0
+      ]
+      type "infra-red"
+      aperture 1.571
+    }
+    LED {
+      translation 0 -0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+    LED {
+      translation 0 0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_food"
+      color [
+        0 1 0
+      ]
+    }
+  ]
+  name "robot(4)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "GPS_robot_nest_food"
+}
+Robot {
+  translation 0.0199993 -1.3092 0.00993995
+  rotation 0.9999998432122538 -0.0005599617735189232 4.275525881894421e-06 0.09347799518778674
+  children [
+    Compass {
+      translation 0 0 0.08
+    }
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82815.61042049857
+        axis -1 0 0
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0450017 3.952080709862081e-06 0.025002650926096354
+        rotation -0.6983647492433449 0.15676053558882302 0.6983643830380993 3.452582290792412
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65648.82034646459
+        axis -1 0 0
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500163819015932 2.658798309080689e-06 0.024997839892272562
+        rotation 0.46300713960568113 0.7558090841361776 0.46300865759875104 1.8471783478076504
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation -0.03 0.03 0.07
+      rotation 0 0 1 1.7608996938995747
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "left_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0.03 0.03 0.07
+      rotation 0 0 1 1.2791003061004251
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "right_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0 0.046 0.01
+      rotation 0.5773519358512958 0.5773469358518515 -0.5773519358512958 2.0944
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "area_detector"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.04 1000 0
+      ]
+      type "infra-red"
+      aperture 1.571
+    }
+    LED {
+      translation 0 -0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+    LED {
+      translation 0 0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_food"
+      color [
+        0 1 0
+      ]
+    }
+  ]
+  name "robot(5)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "GPS_robot_nest_food"
+}
+Robot {
+  translation 0.6700011039893945 -1.311769782527672 -0.010324128874317669
+  rotation 0.9999996123807775 -0.0007950328612128258 0.0003783662831289014 0.06986911337343908
+  children [
+    Compass {
+      translation 0 0 0.08
+    }
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82815.61042054168
+        axis -1 0 0
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0450017 3.952080824125638e-06 0.025002650925926007
+        rotation -0.6983647475126353 0.15676055100939773 0.6983643813073825 3.4525823208938693
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65648.82034650164
+        axis -1 0 0
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500163819015932 2.658798229049756e-06 0.024997839892174054
+        rotation 0.4630071286061456 0.755809097612806 0.46300864659918384 1.8471783306536178
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation -0.03 0.03 0.07
+      rotation 0 0 1 1.7608996938995747
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "left_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0.03 0.03 0.07
+      rotation 0 0 1 1.2791003061004251
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "right_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0 0.046 0.01
+      rotation 0.5773519358512958 0.5773469358518515 -0.5773519358512958 2.0944
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "area_detector"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.04 1000 0
+      ]
+      type "infra-red"
+      aperture 1.571
+    }
+    LED {
+      translation 0 -0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+    LED {
+      translation 0 0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_food"
+      color [
+        0 1 0
+      ]
+    }
+  ]
+  name "robot(6)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "GPS_robot_nest_food"
+}
+Robot {
+  translation 1.12 -1.36488 0.0218636
+  rotation 0.9999998881936067 -0.0004728741177259476 1.686018094884778e-06 0.10542370077867809
+  children [
+    Compass {
+      translation 0 0 0.08
+    }
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82815.61042054479
+        axis -1 0 0
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0450017 3.952080832380779e-06 0.025002650925913698
+        rotation -0.6983647473875938 0.15676055212351084 0.6983643811823415 3.452582323068653
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65648.82034651088
+        axis -1 0 0
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500163819015932 2.6587982090898507e-06 0.024997839892149487
+        rotation 0.4630071258627421 0.7558091009740233 0.4630086438557727 1.8471783263752164
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation -0.03 0.03 0.07
+      rotation 0 0 1 1.7608996938995747
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "left_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0.03 0.03 0.07
+      rotation 0 0 1 1.2791003061004251
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "right_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0 0.046 0.01
+      rotation 0.5773519358512958 0.5773469358518515 -0.5773519358512958 2.0944
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "area_detector"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.04 1000 0
+      ]
+      type "infra-red"
+      aperture 1.571
+    }
+    LED {
+      translation 0 -0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+    LED {
+      translation 0 0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_food"
+      color [
+        0 1 0
+      ]
+    }
+  ]
+  name "robot(7)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "GPS_robot_nest_food"
+}
+Robot {
+  translation 0.9 -1.38631 0.00435029
+  rotation 0.9999999110535364 -0.00042176921075343793 -1.911073829861352e-06 0.10767977129444957
+  children [
+    Compass {
+      translation 0 0 0.08
+    }
+    DEF Body Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 82815.61042053039
+        axis -1 0 0
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0450017 3.952080794190093e-06 0.025002650925970635
+        rotation -0.6983647479660553 0.1567605469694363 0.6983643817608048 3.4525823130077344
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics DEF wheel_phy Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 65648.82034649648
+        axis -1 0 0
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500163819015932 2.658798240208807e-06 0.02499783989218779
+        rotation 0.46300713013985917 0.7558090957337005 0.46300864813290205 1.847178333045481
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE wheel_phy
+      }
+    }
+    DistanceSensor {
+      translation -0.03 0.03 0.07
+      rotation 0 0 1 1.7608996938995747
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "left_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0.03 0.03 0.07
+      rotation 0 0 1 1.2791003061004251
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "right_sensor"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      aperture 1.571
+    }
+    DistanceSensor {
+      translation 0 0.046 0.01
+      rotation 0.5773519358512958 0.5773469358518515 -0.5773519358512958 2.0944
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "area_detector"
+      boundingObject USE sensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.04 1000 0
+      ]
+      type "infra-red"
+      aperture 1.571
+    }
+    LED {
+      translation 0 -0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_avoid"
+    }
+    LED {
+      translation 0 0.02 0.08
+      children [
+        DEF led Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.015
+          }
+        }
+      ]
+      name "led_food"
+      color [
+        0 1 0
+      ]
+    }
+  ]
+  name "robot(8)"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "GPS_robot_nest_food"
+}
